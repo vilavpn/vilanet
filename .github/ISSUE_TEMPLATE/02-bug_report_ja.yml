@@ -1,0 +1,197 @@
+name: バグ報告（日本語）
+description: 再現可能な VilaNet App クライアント（Android / iOS / macOS / Windows / Linux）の不具合を報告します。
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **すべての必須項目を必ず記入してください。**
+
+        VilaNet はグラフィカルな App です。ここで最も重要なのはログファイルではなく、**App 内の「診断情報」JSON** です。**設定 → 右上の 🐞 アイコン → 「コピー」** を開き、下の「診断情報」欄に貼り付けてください。この内容は機微情報が除去されており、安全に共有できます。
+
+        > アカウント・サブスクリプション・支払い・返金に関する問題は、**App 内の「サポート / Support」** または公式サイト https://vilavpn.jp からお問い合わせください。**ここでは再現可能な App の不具合のみを受け付けます。**
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: OS プラットフォーム
+      description: どのプラットフォームで問題が発生しましたか？**プレースホルダーのままにせず、必ず手動で選択してください。**
+      options:
+        - "⚠️ プラットフォームを選択してください（未選択のままは無効な投稿として扱われ、クローズされます）"
+        - Android
+        - iOS
+        - macOS
+        - Windows
+        - Linux
+    validations:
+      required: true
+
+  - type: input
+    id: app_version
+    attributes:
+      label: App バージョン
+      description: 設定 → About を開き、上部の「バージョン X.Y.Z (ビルド番号)」の行をコピーしてください。
+      placeholder: "例：2.12.19 (194)"
+    validations:
+      required: true
+
+  - type: input
+    id: os_version
+    attributes:
+      label: OS バージョン
+      description: お使いの OS とそのバージョン番号。
+      placeholder: "例：Android 14 / iOS 17.5 / macOS 14.5 / Windows 11 23H2 / Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: input
+    id: device_model
+    attributes:
+      label: デバイスの機種とメモリ
+      description: 機種名とメモリは調査に役立ちます（任意ですが、モバイル端末では強く推奨）。
+      placeholder: "例：Pixel 8、iPhone 13、MacBook Air M2 / 8GB"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: install_source
+    attributes:
+      label: インストール方法
+      description: どのようにインストールしましたか？**プレースホルダーのままにせず、必ず手動で選択してください。**
+      options:
+        - "⚠️ インストール方法を選択してください（未選択のままは無効な投稿として扱われ、クローズされます）"
+        - Google Play ストア（Android）
+        - APK を直接ダウンロード（Android、公式サイト / GitHub から）
+        - App Store（TestFlight を含む、iOS）
+        - Mac App Store（macOS）
+        - DMG を直接ダウンロード（macOS、公証済み）
+        - Windows インストーラー .exe（NSIS）
+        - Windows ポータブル版 ZIP
+        - Linux AppImage
+        - Linux tar.gz
+        - その他
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mode
+    attributes:
+      label: 接続 / ルーティングモード
+      description: 問題が起きたとき、どのモードを使用していましたか？**プレースホルダーのままにせず、必ず手動で選択してください。**
+      options:
+        - "⚠️ モードを選択してください（未選択のままは無効な投稿として扱われ、クローズされます）"
+        - PAC / ルールモード（スマート振り分け）
+        - グローバルモード（Global）
+        - TUN モード（デスクトップのみ）
+        - システムプロキシモード（デスクトップのみ）
+        - わからない
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 問題の範囲
+      description: この不具合は主にどの種類に該当しますか？**プレースホルダーのままにせず、必ず手動で選択してください。**
+      options:
+        - "⚠️ 問題の範囲を選択してください（未選択のままは無効な投稿として扱われ、クローズされます）"
+        - 接続できない
+        - 頻繁に切断される / 安定性
+        - 速度 / 遅延
+        - 特定のノードまたはプロトコル（vless / vmess / trojan / hysteria2 / anytls / shadowsocks）
+        - ルーティングルール / 振り分け / アプリ別プロキシ
+        - DNS
+        - アカウント / ログイン
+        - サブスクリプション / ノードリストの更新
+        - App の更新 / 自動更新
+        - 画面 / 表示 / 翻訳
+        - 通知
+        - クラッシュ / フリーズ
+        - その他
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 不具合の説明
+      description: 具体的に何が起きましたか？何を目にしましたか？
+      placeholder: "例：「グローバルモード」で接続を押した後、ステータスがずっと「接続中」のまま……"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 再現手順（必須）
+      description: |
+        **必須 — 実際に行った順番どおりに、1 行に 1 ステップずつ記入してください。** インストール / ログインから始めてください。手順どおりに再現できなければ修正できません。
+      placeholder: |
+        1. インストールしてログイン
+        2. ノードリストで「Tokyo 01」を選択
+        3. 「グローバルモード」に切り替え
+        4. 接続を押す
+        5. 約 30 秒待つ
+        6. 上記のエラーが発生
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待する動作 vs 実際の動作
+      description: 何が起きると期待し、実際には何が起きましたか？
+      placeholder: |
+        期待：接続に成功し、ステータスが「接続済み」と表示され、正常にインターネットを利用できる。
+        実際：ステータスがずっと「接続中」のままで、約 30 秒後に「未接続」に戻る。
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: 診断情報 JSON（必須・最重要）
+      description: |
+        **これが最も重要な項目です。** 設定 → 右上の 🐞 アイコン → 「コピー」を開き、ここに貼り付けてください。この JSON は機微情報が除去されており、App バージョンとビルド番号・プラットフォームとアーキテクチャ・インストール経路・OS・デバイス・接続状態・現在のノードとプロトコル・接続モード・IP・各種設定とアカウント状態が含まれます — これらの情報があれば、問題を素早く特定できます。
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 低レベルログ（任意・デスクトップのみ）
+      description: |
+        ログファイルがあるのはデスクトップのみです。Windows：%APPDATA%\VilaNet\libbox_session.log／Linux：~/.config/vilanet/libbox_session.log。モバイル端末（Android / iOS）にはこのファイルがないため、スキップして構いません。
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: スクリーンショット（任意）
+      description: 画面の問題や、一瞬だけ表示されるエラーメッセージの場合は、スクリーンショットをここにドラッグしてください。
+      placeholder: "スクリーンショットをここにドラッグしてください。"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: 確認事項
+      description: 以下のすべての項目にチェックを入れてください。
+      options:
+        - label: "既存の Issue を検索し、重複した報告でないことを確認しました。"
+          required: true
+        - label: "最新のリリース版を使用しています。"
+          required: true
+        - label: "App 内の「診断情報」JSON（設定 → 🐞 → コピー）を貼り付けました。"
+          required: true
+        - label: "再現手順を概要だけでなく、順番どおり 1 つずつ記入しました。"
+          required: true
+        - label: "アカウント / サブスクリプション / 支払いに関する問題は、ここではなく App 内の「サポート / Support」から送信すべきだと理解しています。"
+          required: true
+        - label: "再現手順は、自分だけが持つ非公開のアカウント情報に依存していません。"
+          required: true

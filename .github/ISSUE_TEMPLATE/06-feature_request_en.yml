@@ -1,0 +1,122 @@
+name: Feature request (English)
+description: Submit a specific, actionable VilaNet App feature request.
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Please clearly describe the specific scenario you want solved. Overly vague requests will be closed.**
+
+        Do not just write "add a feature" or "improve it". Tell us the platform, feature area, request type, the current problem, and the **exact behavior** you want added or changed.
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Target platform
+      description: Which platform is this feature mainly for? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select a platform (leaving this counts as an invalid submission and will be closed)"
+        - Android
+        - iOS
+        - macOS
+        - Windows
+        - Linux
+        - All platforms
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Feature area
+      description: Which category does this request fall under? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select a feature area (leaving this counts as an invalid submission and will be closed)"
+        - Connection / routing mode
+        - Protocol / nodes
+        - Routing rules / split routing / per-app proxy
+        - DNS
+        - Account / subscription (product UX, not billing/support)
+        - UI / interaction / themes
+        - Localization / translation
+        - Notifications
+        - Performance / speed
+        - New platform / new architecture support
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: Request type
+      description: What kind of change are you asking for? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select a request type (leaving this counts as an invalid submission and will be closed)"
+        - New setting / option
+        - New UI control
+        - Improve existing behavior
+        - New protocol support
+        - New platform / architecture support
+        - Improve docs / translation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Current problem or use case
+      description: What is inconvenient, missing, or easy to misunderstand today? Describe a real scenario.
+      placeholder: "e.g. I'd like per-app split routing (some apps go through the proxy, some go direct). Today only global or rule-based routing is available, so I cannot precisely control a single app."
+    validations:
+      required: true
+
+  - type: textarea
+    id: requested_behavior
+    attributes:
+      label: What do you want added or changed?
+      description: Write it as a specific behavior, not just a concept.
+      placeholder: 'e.g. Add a per-app routing list under "Rules & updates" (select an app → direct / proxy / block).'
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      description: How does this feature affect users? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select an impact level (leaving this counts as an invalid submission and will be closed)"
+        - Just more convenient to use
+        - Affects some users
+        - Affects a specific platform
+        - Blocks a workflow
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Extra context (optional)
+      description: Related links, screenshots, how other apps do it, related issues, etc.
+      placeholder: "Add reference links, screenshots, how other apps do it, related issue links, etc."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: Submission checklist
+      description: Please check every item.
+      options:
+        - label: "I have searched the existing issues and confirmed this is not a duplicate request."
+          required: true
+        - label: "I have selected a specific platform, feature area, and request type."
+          required: true
+        - label: "I have explained the current problem or use case and the specific behavior I want added or changed."
+          required: true
+        - label: 'I understand that vague descriptions like "add a feature" or "improve it" will be closed.'
+          required: true

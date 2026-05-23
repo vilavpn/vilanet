@@ -1,0 +1,197 @@
+name: Bug report (English)
+description: Report a reproducible bug in the VilaNet App client (Android / iOS / macOS / Windows / Linux).
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Please fill in every required field.**
+
+        VilaNet is a GUI app, so the most important thing here is not a log file — it is **the in-app "Diagnostics" JSON**: open **Settings → 🐞 icon (top right) → Copy**, then paste it into the "Diagnostics" field below. The content is redacted and safe to share.
+
+        > For account, subscription, payment, or refund issues, please use the **in-app "Tickets / Support"** or our website https://vilavpn.jp — **only reproducible app bugs are handled here**.
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Operating system platform
+      description: Which platform did you hit this on? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select a platform (leaving this counts as an invalid submission and will be closed)"
+        - Android
+        - iOS
+        - macOS
+        - Windows
+        - Linux
+    validations:
+      required: true
+
+  - type: input
+    id: app_version
+    attributes:
+      label: App version
+      description: 'Open Settings → About → copy the line "Version X.Y.Z (build)".'
+      placeholder: "e.g. 2.12.19 (194)"
+    validations:
+      required: true
+
+  - type: input
+    id: os_version
+    attributes:
+      label: Operating system version
+      description: Your OS and its version number.
+      placeholder: "e.g. Android 14 / iOS 17.5 / macOS 14.5 / Windows 11 23H2 / Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: input
+    id: device_model
+    attributes:
+      label: Device model and RAM
+      description: Device model and RAM help with triage (optional, but strongly recommended on mobile).
+      placeholder: "e.g. Pixel 8, iPhone 13, MacBook Air M2 / 8GB"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: install_source
+    attributes:
+      label: Install method
+      description: How did you install it? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select an install method (leaving this counts as an invalid submission and will be closed)"
+        - Google Play Store (Android)
+        - Direct APK download (Android, from our website / GitHub)
+        - App Store (incl. TestFlight, iOS)
+        - Mac App Store (macOS)
+        - DMG direct download (macOS, notarized)
+        - Windows installer .exe (NSIS)
+        - Windows portable ZIP
+        - Linux AppImage
+        - Linux tar.gz
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Connection / routing mode
+      description: Which mode were you using when the issue occurred? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select a mode (leaving this counts as an invalid submission and will be closed)"
+        - PAC / rule mode (smart routing)
+        - Global mode
+        - TUN mode (desktop only)
+        - System proxy mode (desktop only)
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Issue area
+      description: Which category does this bug mainly fall under? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select an issue area (leaving this counts as an invalid submission and will be closed)"
+        - Cannot connect
+        - Frequent disconnects / stability
+        - Speed / latency
+        - A specific node or protocol (vless / vmess / trojan / hysteria2 / anytls / shadowsocks)
+        - Routing rules / split routing / per-app proxy
+        - DNS
+        - Account / login
+        - Subscription / server list refresh
+        - App update / auto-update
+        - UI / display / translation
+        - Notifications
+        - Crash / freeze
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What exactly happened? What did you see?
+      placeholder: 'e.g. After tapping connect in "Global mode", the status stays stuck at "Connecting"...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce (required)
+      description: |
+        **Required — list every step, one per line, in the order you actually performed them.** Start from install / login. If we cannot reproduce the bug by following your steps, we cannot fix it.
+      placeholder: |
+        1. Install and log in
+        2. Select "Tokyo 01" in the server list
+        3. Switch to "Global mode"
+        4. Tap connect
+        5. Wait about 30 seconds
+        6. The error above appears
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual behavior
+      description: What did you expect to happen, and what actually happened?
+      placeholder: |
+        Expected: connects successfully, status shows connected, and the internet works.
+        Actual: status stays stuck at "Connecting" and returns to "Disconnected" after about 30 seconds.
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics JSON (required, most important)
+      description: |
+        **This is the most important field.** Settings → 🐞 icon → Copy → paste the Diagnostics JSON here. This JSON is redacted and includes: app version and build, platform/arch, install channel, OS, device, VPN state, current node and protocol, routing mode, IP, settings, and account state — this lets us pinpoint the problem quickly.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Low-level logs (optional, desktop only)
+      description: |
+        Log files exist on desktop only. Windows: `%APPDATA%\VilaNet\libbox_session.log`; Linux: `~/.config/vilanet/libbox_session.log`. Mobile (Android / iOS) has no such file — you can skip this.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots (optional)
+      description: If this is a UI issue or an error message that flashes by, drag a screenshot here.
+      placeholder: "Drag a screenshot here."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: Submission checklist
+      description: Please check every item.
+      options:
+        - label: "I have searched the existing issues and confirmed this is not a duplicate."
+          required: true
+        - label: "I am using the latest released version."
+          required: true
+        - label: 'I have pasted the in-app "Diagnostics" JSON (Settings → 🐞 → Copy).'
+          required: true
+        - label: "I have written out the reproduction steps one by one, in order, not just a one-line summary."
+          required: true
+        - label: 'I understand that account / subscription / payment issues should be submitted through the in-app "Tickets / Support", not here.'
+          required: true
+        - label: "My reproduction steps do not depend on private account information that only I have."
+          required: true

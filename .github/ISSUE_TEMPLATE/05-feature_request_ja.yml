@@ -1,0 +1,122 @@
+name: 機能リクエスト（日本語）
+description: 具体的で評価可能な VilaNet App の機能リクエストを送ります。
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **解決したい具体的なシナリオを明確に書いてください。曖昧すぎるリクエストはクローズされます。**
+
+        「機能を追加して」「ちょっと改善して」だけでは不十分です。プラットフォーム、機能範囲、リクエスト種別、現在の問題、そして追加・変更してほしい**具体的な動作**を記入してください。
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 対象プラットフォーム
+      description: この機能は主にどのプラットフォーム向けですか？**プレースホルダーのままにせず、必ず手動で選択してください。**
+      options:
+        - "⚠️ プラットフォームを選択してください（未選択のままは無効な投稿として扱われ、クローズされます）"
+        - Android
+        - iOS
+        - macOS
+        - Windows
+        - Linux
+        - すべてのプラットフォーム
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 機能範囲
+      description: このリクエストはどの種類に該当しますか？**プレースホルダーのままにせず、必ず手動で選択してください。**
+      options:
+        - "⚠️ 機能範囲を選択してください（未選択のままは無効な投稿として扱われ、クローズされます）"
+        - 接続 / ルーティングモード
+        - プロトコル / ノード
+        - ルーティングルール / 振り分け / アプリ別プロキシ
+        - DNS
+        - アカウント / サブスクリプション（機能面のみ、課金・サポートは対象外）
+        - 画面 / 操作性 / テーマ
+        - ローカライズ / 翻訳
+        - 通知
+        - パフォーマンス / 速度
+        - 新しいプラットフォーム / アーキテクチャ対応
+        - その他
+    validations:
+      required: true
+
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: リクエスト種別
+      description: どのような変更を希望しますか？**プレースホルダーのままにせず、必ず手動で選択してください。**
+      options:
+        - "⚠️ リクエスト種別を選択してください（未選択のままは無効な投稿として扱われ、クローズされます）"
+        - 設定 / オプションの追加
+        - 画面コントロールの追加
+        - 既存動作の改善
+        - プロトコル対応の追加
+        - プラットフォーム / アーキテクチャ対応の追加
+        - ドキュメント / 翻訳の改善
+        - その他
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 現在の問題またはユースケース
+      description: 今、何が不便・不足・誤解を招きやすいですか？実際のシナリオを記入してください。
+      placeholder: "例：アプリごとに振り分けを設定したい（一部の App はプロキシ経由、一部は直結）。今はグローバルかルールのみで、個々のアプリを細かく制御できない。"
+    validations:
+      required: true
+
+  - type: textarea
+    id: requested_behavior
+    attributes:
+      label: 何を追加・変更してほしいですか？
+      description: 概念だけでなく、具体的な動作として記入してください。
+      placeholder: "例：「ルールと更新」にアプリ振り分け一覧を追加する（App を選択 → 直結 / プロキシ / ブロック）。"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: 影響度
+      description: この機能はユーザーにどう影響しますか？**プレースホルダーのままにせず、必ず手動で選択してください。**
+      options:
+        - "⚠️ 影響度を選択してください（未選択のままは無効な投稿として扱われ、クローズされます）"
+        - 便利になるだけ
+        - 一部のユーザーに影響
+        - 特定のプラットフォームに影響
+        - あるワークフローを妨げている
+        - わからない
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 補足情報（任意）
+      description: 関連リンク、スクリーンショット、他の App での実装、関連 Issue など。
+      placeholder: "参考リンク、スクリーンショット、他の App での実装、関連 Issue のリンクなどを記入できます。"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: 投稿前の確認
+      description: 以下のすべての項目にチェックを入れてください。
+      options:
+        - label: "既存の Issue を検索し、重複したリクエストでないことを確認しました。"
+          required: true
+        - label: "具体的なプラットフォーム、機能範囲、リクエスト種別を選択しました。"
+          required: true
+        - label: "現在の問題またはユースケースと、追加・変更してほしい具体的な動作を記入しました。"
+          required: true
+        - label: "「機能を追加して」「ちょっと改善して」のような曖昧な記述はクローズされることを理解しています。"
+          required: true

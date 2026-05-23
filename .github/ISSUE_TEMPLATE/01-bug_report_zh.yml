@@ -1,0 +1,194 @@
+name: Bug 报告（中文）
+description: 报告一个可复现的 VilaNet App 客户端 Bug（Android / iOS / macOS / Windows / Linux）。
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **请填写所有必填项。**
+
+        VilaNet 是图形界面 App,这里最重要的不是日志文件,而是 **App 内的「诊断信息」JSON**:打开 **设置 → 右上角 🐞 图标 → 点「复制」**,再粘贴到下方「诊断信息」栏。该内容已脱敏,可安全分享。
+
+        > 账号、订阅、付款、退款问题请通过 **App 内『工单 / Support』** 或官网 https://vilavpn.jp 提交,**此处仅受理可复现的 App Bug**。
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 操作系统平台
+      description: "你在哪个平台遇到此问题?**请手动选择,不要保留默认占位符。**"
+      options:
+        - "⚠️ 请选择平台（保留此项会被视为无效提交并关闭）"
+        - Android
+        - iOS
+        - macOS
+        - Windows
+        - Linux
+    validations:
+      required: true
+
+  - type: input
+    id: app_version
+    attributes:
+      label: App 版本
+      description: "打开 设置 → 关于,复制顶部「版本 X.Y.Z (构建号)」那一行。"
+      placeholder: "例如:2.12.19 (194)"
+    validations:
+      required: true
+
+  - type: input
+    id: os_version
+    attributes:
+      label: 操作系统版本
+      description: 你的系统及其版本号。
+      placeholder: "例如:Android 14 / iOS 17.5 / macOS 14.5 / Windows 11 23H2 / Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: input
+    id: device_model
+    attributes:
+      label: 设备型号与内存
+      description: "设备型号和内存有助于排查(可选,但移动端强烈建议填写)。"
+      placeholder: "例如:Pixel 8、iPhone 13、MacBook Air M2 / 8GB"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: install_source
+    attributes:
+      label: 安装方式
+      description: "你是如何安装的?**请手动选择,不要保留默认占位符。**"
+      options:
+        - "⚠️ 请选择安装方式（保留此项会被视为无效提交并关闭）"
+        - Google Play 商店（Android）
+        - 直接下载 APK（Android,来自官网 / GitHub）
+        - App Store（含 TestFlight,iOS）
+        - Mac App Store（macOS）
+        - DMG 直接下载（macOS,已公证）
+        - Windows 安装包 .exe（NSIS）
+        - Windows 便携版 ZIP
+        - Linux AppImage
+        - Linux tar.gz
+        - 其他
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mode
+    attributes:
+      label: 连接 / 路由模式
+      description: "出问题时你使用的是哪种模式?**请手动选择,不要保留默认占位符。**"
+      options:
+        - "⚠️ 请选择模式（保留此项会被视为无效提交并关闭）"
+        - PAC / 规则模式（智能分流）
+        - 全局模式（Global）
+        - TUN 模式（仅桌面端）
+        - 系统代理模式（仅桌面端）
+        - 不确定
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 问题所属范围
+      description: "这个 Bug 主要属于哪一类?**请手动选择,不要保留默认占位符。**"
+      options:
+        - "⚠️ 请选择问题范围（保留此项会被视为无效提交并关闭）"
+        - 无法连接
+        - 频繁掉线 / 稳定性
+        - 速度 / 延迟
+        - "某个节点或协议(vless / vmess / trojan / hysteria2 / anytls / shadowsocks)"
+        - 路由规则 / 分流 / 应用分应用代理
+        - DNS
+        - 账号 / 登录
+        - 订阅 / 节点列表刷新
+        - App 更新 / 自动更新
+        - 界面 / 显示 / 翻译
+        - 通知
+        - 崩溃 / 卡死
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 具体发生了什么?你看到了什么?
+      placeholder: "例如:在「全局模式」下点击连接后,状态一直停在「连接中」……"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤（必填）
+      description: "**必填 —— 按你实际操作的顺序,一行一步列出。** 从安装 / 登录开始。如果我们无法按你的步骤复现,就无法修复。"
+      placeholder: |
+        1. 安装并登录
+        2. 在节点列表选择「Tokyo 01」
+        3. 切换到「全局模式」
+        4. 点击连接
+        5. 等待约 30 秒
+        6. 出现上述错误
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为 vs 实际行为
+      description: 你期望发生什么,实际又发生了什么?
+      placeholder: |
+        期望:连接成功,状态显示已连接,可以正常上网。
+        实际:状态一直停在「连接中」,约 30 秒后回到「未连接」。
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: 诊断信息 JSON(必填,最重要)
+      description: "**这是最重要的一栏。** 打开 设置 → 右上角 🐞 图标 → 点「复制」,然后粘贴到这里。该 JSON 已脱敏,包含:App 版本与构建号、平台与架构、安装渠道、系统、设备、连接状态、当前节点与协议、连接模式、IP、各项设置与账号状态 —— 这些信息能让我们快速定位问题。"
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 底层日志(可选,仅桌面端)
+      description: "仅桌面端有日志文件。Windows:%APPDATA%\\VilaNet\\libbox_session.log;Linux:~/.config/vilanet/libbox_session.log。移动端(Android / iOS)无此文件,可跳过。"
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 截图(可选)
+      description: 如果是界面问题或一闪而过的错误提示,请把截图拖到这里。
+      placeholder: 把截图拖到这里。
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: 提交确认
+      description: 请勾选每一项。
+      options:
+        - label: "我已搜索现有 issues,确认这不是重复报告。"
+          required: true
+        - label: "我使用的是最新发布版本。"
+          required: true
+        - label: "我已粘贴 App 内「诊断信息」JSON(设置 → 🐞 → 复制)。"
+          required: true
+        - label: "我已按顺序逐条写出复现步骤,而不是只写一句概述。"
+          required: true
+        - label: "我理解账号 / 订阅 / 付款问题应通过 App 内「工单 / Support」提交,而非此处。"
+          required: true
+        - label: "我的复现步骤不依赖只有我才有的私人账号信息。"
+          required: true

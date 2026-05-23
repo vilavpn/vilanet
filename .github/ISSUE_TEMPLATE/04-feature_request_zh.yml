@@ -1,0 +1,122 @@
+name: 功能请求（中文）
+description: 提交一个具体、可评估的 VilaNet App 功能请求。
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **请写清楚你要解决的具体场景。过于模糊的请求会被关闭。**
+
+        不要只写「加个功能」「优化一下」。请说明平台、功能范围、请求类型、当前问题,以及你希望新增或改变的**具体行为**。
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 目标平台
+      description: "这个功能主要针对哪个平台?**请手动选择,不要保留默认占位符。**"
+      options:
+        - "⚠️ 请选择平台（保留此项会被视为无效提交并关闭）"
+        - Android
+        - iOS
+        - macOS
+        - Windows
+        - Linux
+        - 全部平台
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 功能范围
+      description: "这个请求属于哪一类?**请手动选择,不要保留默认占位符。**"
+      options:
+        - "⚠️ 请选择功能范围（保留此项会被视为无效提交并关闭）"
+        - 连接 / 路由模式
+        - 协议 / 节点
+        - 路由规则 / 分流 / 应用分应用代理
+        - DNS
+        - 账号 / 订阅（产品功能,非账单 / 客服）
+        - 界面 / 交互 / 主题
+        - 本地化 / 翻译
+        - 通知
+        - 性能 / 速度
+        - 新平台 / 新架构支持
+        - 其他
+    validations:
+      required: true
+
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: 请求类型
+      description: "你希望我们做哪类改变?**请手动选择,不要保留默认占位符。**"
+      options:
+        - "⚠️ 请选择请求类型（保留此项会被视为无效提交并关闭）"
+        - 新增设置 / 选项
+        - 新增界面控件
+        - 改进现有行为
+        - 新增协议支持
+        - 新增平台 / 架构支持
+        - 改进文档 / 翻译
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 当前问题或使用场景
+      description: 现在哪里不方便、缺失或容易误解?请描述真实场景。
+      placeholder: "例如:希望能按应用设置分流(某些 App 走代理,某些直连),目前只能全局或按规则走,无法精确控制单个应用。"
+    validations:
+      required: true
+
+  - type: textarea
+    id: requested_behavior
+    attributes:
+      label: 你希望新增或改变什么?
+      description: 请写成具体行为,而不是只写一个概念。
+      placeholder: "例如:在「规则与更新」里增加一个应用分流列表(选择 App → 直连 / 代理 / 阻止)。"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: 影响程度
+      description: "这个功能对用户有什么影响?**请手动选择,不要保留默认占位符。**"
+      options:
+        - "⚠️ 请选择影响程度（保留此项会被视为无效提交并关闭）"
+        - 只是使用更方便
+        - 影响部分用户
+        - 影响某个平台
+        - 阻塞了某个使用流程
+        - 不确定
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 补充信息(可选)
+      description: 相关链接、截图、其他 App 的做法、相关 issue 等。
+      placeholder: 可以放参考链接、截图、其他 App 的做法、相关 issue 链接等。
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: 提交确认
+      description: 请勾选每一项。
+      options:
+        - label: "我已搜索现有 issues,确认这不是重复请求。"
+          required: true
+        - label: "我已选择具体的平台、功能范围和请求类型。"
+          required: true
+        - label: "我已说明当前问题或使用场景,以及希望新增或改变的具体行为。"
+          required: true
+        - label: "我理解只写「加个功能」「优化一下」这类模糊描述会被关闭。"
+          required: true
